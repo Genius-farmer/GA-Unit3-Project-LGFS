@@ -11,6 +11,7 @@ import UserContext from "../context/UserContext.js";
 import { getDurationArray, getDurationInMs } from "../utils/activityUtils.js";
 import { getDateLocal } from "../utils/dateUtils.js";
 import { retainDigits } from "../utils/dataSanitizeUtils.js";
+import StatDisplay from "./StatDisplay.jsx";
 
 const intensityMappings = [
   { name: "Low", value: 1 },
@@ -192,13 +193,7 @@ const UpdateRecordedActivityDialog = (props) => {
       {isReady && (
         <div className={css["dialog-card"]}>
           <div className={css["dialog-row"]}>
-            <StatSelect
-              title="Activity"
-              value={type}
-              setValue={setType}
-              size={css["stat-input-md"]}
-              options={activity.types}
-            />
+            <StatDisplay title="Activity" value={type} />
             <StatDateInput title="Date" value={date} setValue={setDate} size={css["stat-input-sm"]} />
           </div>
           <div className={css["dialog-row"]}>
