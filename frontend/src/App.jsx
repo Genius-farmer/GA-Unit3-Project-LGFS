@@ -9,6 +9,7 @@ import ProfilePage from "./components/ProfilePage.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import AdminConfigsPage from "./components/AdminConfigsPage.jsx";
 import AdminAccountsPage from "./components/AdminAccountsPage.jsx";
+import DevLogin from "./components/DevLogin.jsx";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -61,6 +62,7 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route path="/dev/loginBypass" element={<DevLogin />} />
         </Routes>
       </UserContext.Provider>
     </div>

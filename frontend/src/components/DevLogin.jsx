@@ -5,8 +5,6 @@ import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 
 const DevLogin = () => {
-  const [username, setUsername] = useState("newuser");
-  const [password, setPassword] = useState("password");
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
 
@@ -18,7 +16,7 @@ const DevLogin = () => {
     setIsError(false);
     setError(null);
 
-    const body = { username, password };
+    const body = { username: "newuser", password: "password" };
     const res = await fetchData("/api/accounts/login", "POST", { body });
 
     if (res.ok) {
