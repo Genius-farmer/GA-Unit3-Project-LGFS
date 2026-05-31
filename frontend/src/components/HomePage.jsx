@@ -16,11 +16,11 @@ const HomePage = () => {
   };
 
   return (
-    <div className={`${css["app-wrapper"]}`}>
+    <div className={css["app-wrapper"]}>
       <div></div>
-      <div className={`${css["app-container"]}`}>
+      <div className={css["app-container"]}>
         <UserNavBar />
-        <div className={`${css["user-dashboard"]}`}>
+        <div className={css["user-dashboard"]}>
           <ProfilePanel reload={reload} notAuth={handleNotAuth} />
           <RecordedActivityPanel reload={reload} setReload={setReload} notAuth={handleNotAuth} />
           <RightPanel />
