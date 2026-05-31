@@ -4,7 +4,7 @@ import css from "../styles/HomePage.module.css";
 const RightPanel = () => {
   return (
     <div className={css["profile-panel"]}>
-      <div className={`${css["panel-header"]}`}>Future Features</div>
+      <div className={css["panel-header"]}>Future Features</div>
     </div>
   );
 };
