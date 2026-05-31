@@ -203,10 +203,21 @@
 .stat {
   display: flex;
   flex-direction: column;
+  width: fit-content;
+}
+
+.stat-label-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .stat-label {
   font-size: 0.7rem;
+}
+
+.stat-label-sub {
+  font-size: 0.7rem;
+  color: #919191;
 }
 
 .stat-value {

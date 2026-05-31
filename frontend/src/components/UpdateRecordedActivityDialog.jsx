@@ -10,6 +10,7 @@ import { getBearerHeader, sharedFetch, userEndpoints } from "../utils/fetchingUt
 import UserContext from "../context/UserContext.js";
 import { getDurationArray, getDurationInMs } from "../utils/activityUtils.js";
 import { getDateLocal } from "../utils/dateUtils.js";
+import { retainDigits } from "../utils/dataSanitizeUtils.js";
 
 const intensityMappings = [
   { name: "Low", value: 1 },
@@ -208,6 +209,8 @@ const UpdateRecordedActivityDialog = (props) => {
                 setValue={setDistance}
                 size={css["stat-input-sm"]}
                 unit="meters"
+                maxLength={5}
+                sanitizer={retainDigits}
               />
             )}
             {showDuration && (
@@ -215,16 +218,25 @@ const UpdateRecordedActivityDialog = (props) => {
                 title="Duration"
                 size={css["stat-input-md"]}
                 items={[
-                  { value: durationH, setValue: setDurationH, unit: "hr" },
-                  { value: durationM, setValue: setDurationM, unit: "min" },
-                  { value: durationS, setValue: setDurationS, unit: "sec" },
+                  { value: durationH, setValue: setDurationH, unit: "hr", maxLength: 3 },
+                  { value: durationM, setValue: setDurationM, unit: "min", maxLength: 2 },
+                  { value: durationS, setValue: setDurationS, unit: "sec", maxLength: 2 },
                 ]}
+                sanitizer={retainDigits}
               />
             )}
           </div>
           <div className={css["dialog-row"]}>
             {showLaps && (
-              <StatTextInput title="Laps" value={laps} setValue={setLaps} size={css["stat-input-sm"]} unit="laps" />
+              <StatTextInput
+                title="Laps"
+                value={laps}
+                setValue={setLaps}
+                size={css["stat-input-sm"]}
+                unit="laps"
+                maxLength={3}
+                sanitizer={retainDigits}
+              />
             )}
             {showIntensity && (
               <StatSelect
@@ -236,7 +248,13 @@ const UpdateRecordedActivityDialog = (props) => {
               />
             )}
           </div>
-          <StatTextarea title="Comment" value={comments} setValue={setComments} size={css["stat-input-lg"]} />
+          <StatTextarea
+            title="Comment"
+            value={comments}
+            setValue={setComments}
+            size={css["stat-input-lg"]}
+            maxLength={500}
+          />
           <div className={css["dialog-footer"]}>
             <div>
               <button className={css["text-button"]} onClick={handleUpdate}>
