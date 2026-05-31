@@ -442,7 +442,6 @@ textarea:focus {
   color: lightgray;
 }
 
-<<<<<<< HEAD
 .profile-page-content {
   display: flex;
   flex-direction: column;
@@ -610,3 +609,4 @@ textarea:focus {
   text-decoration: underline #cc2c29 solid 3px;
   text-underline-offset: 6px;
   margin-top: 2rem;
+}
