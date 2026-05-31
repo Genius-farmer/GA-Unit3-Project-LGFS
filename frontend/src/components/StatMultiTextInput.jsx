@@ -2,6 +2,10 @@ import React from "react";
 import css from "../styles/HomePage.module.css";
 
 const StatMultiTextInput = (props) => {
+  const handleOnChange = (rawStr, setValue) => {
+    const finalStr = props.sanitizer ? props.sanitizer(rawStr) : rawStr;
+    setValue(finalStr);
+  };
   return (
     <div className={css["stat"]}>
       <div className={css["stat-label"]}>{props.title}</div>
@@ -13,7 +17,8 @@ const StatMultiTextInput = (props) => {
                 className={`${css["input-padding"]}`}
                 type="text"
                 value={item.value}
-                onChange={(e) => item.setValue(e.target.value)}
+                {...(item.maxLength && { maxLength: item.maxLength })}
+                onChange={(e) => handleOnChange(e.target.value, item.setValue)}
               />
               <div className={css["stat-unit"]}>{item.unit}</div>
             </div>
