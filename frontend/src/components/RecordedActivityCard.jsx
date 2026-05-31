@@ -3,6 +3,7 @@ import css from "../styles/HomePage.module.css";
 import { getActivityIcon, getDurationString, getIntensityString } from "../utils/activityUtils.js";
 import { formatForDateTimeLocal, getDateAndTime } from "../utils/dateUtils.js";
 import { getAsset, iconEditSrc } from "../utils/assetUtils.js";
+import StatDisplay from "./StatDisplay.jsx";
 
 const defaultConfig = {
   distance_m_toggle: true,
@@ -39,30 +40,10 @@ const RecordedActivityCard = (props) => {
       </div>
       <div className={`${css["comment"]}`}>{comments}</div>
       <div className={`${css["stat-list"]}`}>
-        {distance_m_toggle && (
-          <div className={`${css["stat"]}`}>
-            <div className={`${css["stat-label"]}`}>Distance</div>
-            <div className={`${css["stat-value"]}`}>{distance_m}</div>
-          </div>
-        )}
-        {duration_ms_toggle && (
-          <div className={`${css["stat"]}`}>
-            <div className={`${css["stat-label"]}`}>Duration</div>
-            <div className={`${css["stat-value"]}`}>{getDurationString(duration_ms)}</div>
-          </div>
-        )}
-        {laps_toggle && (
-          <div className={`${css["stat"]}`}>
-            <div className={`${css["stat-label"]}`}>Laps</div>
-            <div className={`${css["stat-value"]}`}>{laps}</div>
-          </div>
-        )}
-        {intensity_level_toggle && (
-          <div className={`${css["stat"]}`}>
-            <div className={`${css["stat-label"]}`}>Intensity</div>
-            <div className={`${css["stat-value"]}`}>{getIntensityString(intensity_level)}</div>
-          </div>
-        )}
+        {distance_m_toggle && <StatDisplay label="Distance" value={distance_m} />}
+        {duration_ms_toggle && <StatDisplay label="Duration" value={getDurationString(duration_ms)} />}
+        {laps_toggle && <StatDisplay label="Laps" value={laps} />}
+        {intensity_level_toggle && <StatDisplay label="Intensity" value={getIntensityString(intensity_level)} />}
       </div>
     </div>
   );
