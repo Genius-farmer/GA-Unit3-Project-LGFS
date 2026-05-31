@@ -25,7 +25,7 @@ const RecordedActivityPanel = (props) => {
 
     if (!res.ok && res.status === 401) {
       console.log(res.status, res.message);
-      if (props.handleNotAuth) props.handleNotAuth();
+      if (props.notAuth) props.notAuth();
       return;
     }
 
