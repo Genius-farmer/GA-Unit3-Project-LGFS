@@ -18,3 +18,18 @@ export const getDateLocal = (dateObj) => {
   const localISOTime = new Date(dateObj.getTime() - offset).toISOString();
   return localISOTime.slice(0, 10);
 };
+
+export const getWeekDays = () => {
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 = Sunday
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    days.push(getDateLocal(d)); // returns "YYYY-MM-DD"
+  }
+  return days;
+};

@@ -400,3 +400,22 @@ textarea:focus {
   justify-content: space-between;
   align-items: center;
 }
+
+.streak-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.streak-day {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.streak-on {
+  color: green;
+}
+
+.streak-off {
+  color: lightgray;
+}

@@ -9,14 +9,16 @@ import ProfilePage from "./components/ProfilePage.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import AdminConfigsPage from "./components/AdminConfigsPage.jsx";
 import AdminAccountsPage from "./components/AdminAccountsPage.jsx";
+import DevLogin from "./components/DevLogin.jsx";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const [displayName, setDisplayName] = useState("Guest");
   const [role, setRole] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   return (
-    <div className={`${cssMain["main-wrapper"]}`}>
+    <div className={cssMain["main-wrapper"]}>
       <UserContext.Provider
         value={{
           accessToken,
@@ -25,6 +27,8 @@ function App() {
           setDisplayName,
           role,
           setRole,
+          profileImage,
+          setProfileImage,
         }}
       >
         <Routes>
@@ -61,6 +65,7 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route path="/dev/loginBypass" element={<DevLogin />} />
         </Routes>
       </UserContext.Provider>
     </div>

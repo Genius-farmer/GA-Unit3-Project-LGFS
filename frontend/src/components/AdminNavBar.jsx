@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router";
 import css from "../styles/HomePage.module.css";
 import UserContext from "../context/UserContext.js";
-import { getAsset, navLogoSrc } from "../utils/assetUtils.js";
-import { getProfileIcon } from "../utils/profileUtils.js";
+import { defaultProfileSrc, getAsset, navLogoSrc } from "../utils/assetUtils.js";
 
-const UserNavBar = () => {
+const AdminNavBar = () => {
   const userCtx = useContext(UserContext);
 
   return (
@@ -13,11 +12,12 @@ const UserNavBar = () => {
       <img className={css["nav-logo"]} src={getAsset(navLogoSrc)} />
       <div className={css["nav-links"]}>
         <div className={css["nav-primary"]}>
-          <NavLink to="/user/dashboard">Dashboard</NavLink>
+          <NavLink to="/admin/configs">Activity Configurations</NavLink>
+          <NavLink to="/admin/accounts">User Accounts</NavLink>
         </div>
         <div className={css["nav-secondary"]}>
           <div className={css["profile-link"]}>
-            <img className={css["profile-img"]} src={getProfileIcon(userCtx.profileImage)} />
+            <img className={css["profile-img"]} src={getAsset(defaultProfileSrc)} />
             <NavLink to="/user/profile" data-text="Profile">
               {userCtx.displayName}
             </NavLink>
@@ -28,4 +28,4 @@ const UserNavBar = () => {
   );
 };
 
-export default UserNavBar;
+export default AdminNavBar;
