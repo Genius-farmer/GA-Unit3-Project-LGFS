@@ -18,7 +18,7 @@ function App() {
   const [profileImage, setProfileImage] = useState("");
 
   return (
-    <div className={`${cssMain["main-wrapper"]}`}>
+    <div className={cssMain["main-wrapper"]}>
       <UserContext.Provider
         value={{
           accessToken,
