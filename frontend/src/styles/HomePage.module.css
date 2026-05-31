@@ -419,3 +419,35 @@ textarea:focus {
 .streak-off {
   color: lightgray;
 }
+
+.prompt-box {
+  margin-top: 5rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  min-width: 30rem;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+.prompt-box > img {
+  width: 8rem;
+  align-self: flex-start;
+}
+
+.exclaim {
+  font-size: 10rem;
+  font-weight: 200;
+}
+
+.prompt-box > button {
+  border: none;
+  background: none;
+  text-decoration: underline #cc2c29 solid 3px;
+  text-underline-offset: 6px;
+  margin-top: 2rem;
+}
