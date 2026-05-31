@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import css from "../styles/HomePage.module.css";
 import UserContext from "../context/UserContext.js";
-import { defaultProfileSrc, getAsset, navLogoSrc } from "../utils/assetUtils.js";
+import { defaultProfileSrc, getAsset, iconLogoutSrc, navLogoSrc } from "../utils/assetUtils.js";
 
 const AdminNavBar = () => {
   const userCtx = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    userCtx.setAccessToken("");
+    navigate("/");
+  };
 
   return (
     <nav className={css["nav-container"]}>
@@ -21,6 +27,11 @@ const AdminNavBar = () => {
             <NavLink to="/user/profile" data-text="Profile">
               {userCtx.displayName}
             </NavLink>
+          </div>
+          <div>
+            <button className={css["action-icon-button"]} onClick={handleLogout}>
+              <img className={css["button-icon"]} src={getAsset(iconLogoutSrc)} alt="logout icon" />
+            </button>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@
   column-gap: 2rem;
   background-color: #f8f8f8;
   border-bottom: 1px solid rgb(230, 238, 245);
-  height: max-content;
+  height: 100%;
 }
 
 .nav-container a {
@@ -66,16 +66,27 @@
   flex: 1;
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
 .nav-primary {
   display: flex;
   column-gap: 2rem;
+  align-items: center;
 }
 
 .nav-secondary {
   display: flex;
   column-gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-secondary div:has(button) {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  height: 100%;
+  border-left: 3px solid #cc2c29;
 }
 
 .profile-link {
