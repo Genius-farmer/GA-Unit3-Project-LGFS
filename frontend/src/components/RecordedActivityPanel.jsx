@@ -75,11 +75,11 @@ const RecordedActivityPanel = (props) => {
     <>
       {isAddActivityOpen && <AddRecordedActivityDialog onClose={handleAddActivityClose} />}
       {isEditActivityOpen && <UpdateRecordedActivityDialog id={editId} onClose={handleEditActivityClose} />}
-      <div className={`${css["rec-activity-panel"]}`}>
-        <div className={`${css["panel-header-wrapper"]}`}>
-          <div className={`${css["panel-header"]}`}>Activity Feeds</div>
+      <div className={css["rec-activity-panel"]}>
+        <div className={css["panel-header-wrapper"]}>
+          <div className={css["panel-header"]}>Activity Feeds</div>
           <button className={`${css["action-icon-button"]} ${css["button-border"]}`} onClick={handleAddActivity}>
-            <img className={`${css["button-icon"]}`} src={getAsset(iconAddSrc)} alt={`add activitiy icon`} />
+            <img className={css["button-icon"]} src={getAsset(iconAddSrc)} alt={`add activitiy icon`} />
           </button>
         </div>
         {isReady &&
