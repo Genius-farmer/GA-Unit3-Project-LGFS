@@ -31,7 +31,7 @@
   column-gap: 2rem;
   background-color: #f8f8f8;
   border-bottom: 1px solid rgb(230, 238, 245);
-  height: max-content;
+  height: 100%;
 }
 
 .nav-container a {
@@ -66,16 +66,27 @@
   flex: 1;
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
 .nav-primary {
   display: flex;
   column-gap: 2rem;
+  align-items: center;
 }
 
 .nav-secondary {
   display: flex;
   column-gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-secondary div:has(button) {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  height: 100%;
+  border-left: 3px solid #cc2c29;
 }
 
 .profile-link {
@@ -431,6 +442,7 @@ textarea:focus {
   color: lightgray;
 }
 
+<<<<<<< HEAD
 .profile-page-content {
   display: flex;
   flex-direction: column;
@@ -567,3 +579,34 @@ textarea:focus {
   font-size: 0.8rem;
   color: green;
 }
+
+.prompt-box {
+  margin-top: 5rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  min-width: 30rem;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+.prompt-box > img {
+  width: 8rem;
+  align-self: flex-start;
+}
+
+.exclaim {
+  font-size: 10rem;
+  font-weight: 200;
+}
+
+.prompt-box > button {
+  border: none;
+  background: none;
+  text-decoration: underline #cc2c29 solid 3px;
+  text-underline-offset: 6px;
+  margin-top: 2rem;

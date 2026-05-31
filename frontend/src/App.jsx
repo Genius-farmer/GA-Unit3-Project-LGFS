@@ -10,6 +10,7 @@ import AdminRoute from "./components/AdminRoute.jsx";
 import AdminConfigsPage from "./components/AdminConfigsPage.jsx";
 import AdminAccountsPage from "./components/AdminAccountsPage.jsx";
 import DevLogin from "./components/DevLogin.jsx";
+import FourOFour from "./components/FourOFour.jsx";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -65,6 +66,8 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="/404" element={<FourOFour />} />
           <Route path="/dev/loginBypass" element={<DevLogin />} />
         </Routes>
       </UserContext.Provider>
