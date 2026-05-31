@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import UserContext from "../context/UserContext.js";
 import { sharedFetch } from "../utils/fetchingUtils.js";
+import css from "../styles/App.module.css";
+import { getAsset, navLogoSrc } from "../utils/assetUtils.js";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,6 +12,7 @@ const AuthPage = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [displayName, setDisplayName] = useState("");
 
   const userCtx = useContext(UserContext);
   const fetchData = sharedFetch();
@@ -22,6 +25,7 @@ const AuthPage = () => {
 
   const handleToggle = () => {
     clearMessages();
+    setDisplayName("");
     setIsLogin((prev) => !prev);
   };
 
@@ -49,7 +53,7 @@ const AuthPage = () => {
   const handleRegister = async () => {
     clearMessages();
     const res = await fetchData("/api/accounts/register", "PUT", {
-      body: { username, password },
+      body: { username, password, displayName },
     });
 
     if (res.ok) {
@@ -61,38 +65,70 @@ const AuthPage = () => {
   };
 
   return (
-    <div>
-      <h2>{isLogin ? "Login" : "Register"}</h2>
-      <label>
-        Username
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+    <div className={css["auth-wrapper"]}>
+      <div className={css["auth-card"]}>
+        <img
+          className={css["auth-logo"]}
+          src={getAsset(navLogoSrc)}
+          alt="logo"
         />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+        <div className={css["auth-title"]}>
+          {isLogin ? "Login" : "Register"}
+        </div>
+        <div className={css["auth-field"]}>
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
 
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {!isLogin && (
+          <div className={css["auth-field"]}>
+            <label>Display Name</label>
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+          </div>
+        )}
 
-      <button onClick={isLogin ? handleLogin : handleRegister}>
-        {isLogin ? "Login" : "Register"}
-      </button>
+        <div className={css["auth-field"]}>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-      <p>
-        {isLogin ? "Don't have an account? " : "Already have an account? "}
-        <button onClick={handleToggle}>{isLogin ? "Register" : "Login"}</button>
-      </p>
+        {errorMessage && (
+          <p style={{ color: "red", fontSize: "0.8rem", margin: 0 }}>
+            {errorMessage}
+          </p>
+        )}
+        {successMessage && (
+          <p style={{ color: "green", fontSize: "0.8rem", margin: 0 }}>
+            {successMessage}
+          </p>
+        )}
+
+        <button
+          className={css["text-button"]}
+          onClick={isLogin ? handleLogin : handleRegister}
+        >
+          {isLogin ? "Login" : "Register"}
+        </button>
+
+        <div className={css["auth-footer"]}>
+          {isLogin ? "Don't have an account?" : "Already have an account?"}
+          <button className={css["auth-toggle-btn"]} onClick={handleToggle}>
+            {isLogin ? "Register" : "Login"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

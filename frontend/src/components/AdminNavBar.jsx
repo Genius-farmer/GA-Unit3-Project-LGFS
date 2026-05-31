@@ -13,7 +13,7 @@ const AdminNavBar = () => {
       <div className={css["nav-links"]}>
         <div className={css["nav-primary"]}>
           <NavLink to="/admin/configs">Activity Configurations</NavLink>
-          <NavLink to="/admin/accounts">User Accounts</NavLink>
+          <NavLink to="/admin/accounts">Manage Users</NavLink>
         </div>
         <div className={css["nav-secondary"]}>
           <div className={css["profile-link"]}>

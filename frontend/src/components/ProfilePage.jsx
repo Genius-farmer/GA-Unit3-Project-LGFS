@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import css from "../styles/HomePage.module.css";
 import { getProfileIcon } from "../utils/profileUtils.js";
+import { getAsset, iconEditSrc } from "../utils/assetUtils.js";
 import UserContext from "../context/UserContext.js";
+import UserNavBar from "./UserNavBar.jsx";
+import StatDisplay from "./StatDisplay.jsx";
+import StatTextInput from "./StatTextInput.jsx";
 import {
   getBearerHeader,
   sharedFetch,
@@ -12,18 +15,18 @@ import {
 const ProfilePage = () => {
   const userCtx = useContext(UserContext);
   const fetchData = sharedFetch();
-  const navigate = useNavigate();
 
-  const [profileIconId] = useState(() => Math.floor(Math.random() * 2));
+  const [profileIconId] = useState(0);
 
   const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileMsg, setProfileMsg] = useState("");
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [profileMsg, setProfileMsg] = useState("");
+  const [isEditingPassword, setIsEditingPassword] = useState(false);
   const [passwordMsg, setPasswordMsg] = useState("");
 
   const loadProfile = async () => {
@@ -55,6 +58,7 @@ const ProfilePage = () => {
 
     userCtx.setDisplayName(displayName);
     setProfileMsg("Profile updated successfully!");
+    setIsEditingProfile(false);
   };
 
   const handlePasswordChange = async (e) => {
@@ -80,86 +84,182 @@ const ProfilePage = () => {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
+    setIsEditingPassword(false);
   };
 
   return (
     <div className={css["app-wrapper"]}>
       <div></div>
       <div className={css["app-container"]}>
-        <div style={{ padding: "24px" }}>
-          <button onClick={() => navigate("/user/dashboard")}>← Back</button>
+        <UserNavBar />
+        <div className={css["user-dashboard"]}>
+          <div></div>
+          <div className={css["profile-page-content"]}>
+            {/* Profile icon card */}
+            <div className={css["profile-page-card"]}>
+              <img
+                className={css["profile-page-icon"]}
+                src={getProfileIcon(profileIconId)}
+                alt="profile icon"
+              />
+              <div className={css["greeting"]}>{userCtx.displayName}</div>
+            </div>
 
-          <div
-            className={css["profile-panel-card"]}
-            style={{ marginTop: "16px" }}
-          >
-            <img
-              className={css["profile-panel-icon"]}
-              src={getProfileIcon(profileIconId)}
-              alt="profile icon"
-            />
-            <div className={css["greeting"]}>Your Profile</div>
-          </div>
+            {/* Profile details card */}
+            <div className={css["profile-page-card"]}>
+              <div className={css["profile-page-card-header"]}>
+                <div className={css["panel-header"]}>Profile Details</div>
+                <button
+                  className={`${css["action-icon-button"]} ${css["button-border"]}`}
+                  onClick={() => {
+                    setIsEditingProfile((prev) => !prev);
+                    setProfileMsg("");
+                  }}
+                >
+                  <img
+                    className={css["button-icon"]}
+                    src={getAsset(iconEditSrc)}
+                    alt="edit icon"
+                  />
+                </button>
+              </div>
 
-          <div
-            className={css["profile-panel-card"]}
-            style={{ marginTop: "16px" }}
-          >
-            <form onSubmit={handleProfileUpdate}>
-              <div>
-                <label>Display Name</label>
-                <input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                />
-              </div>
-              <div>
-                <label>Username</label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              {profileMsg && <div>{profileMsg}</div>}
-              <button type="submit">Save Profile</button>
-            </form>
-          </div>
+              {!isEditingProfile && (
+                <div className={css["profile-page-stat-list"]}>
+                  <StatDisplay
+                    title="Display Name"
+                    value={displayName || "-"}
+                  />
+                  <StatDisplay title="Username" value={username || "-"} />
+                </div>
+              )}
 
-          <div
-            className={css["profile-panel-card"]}
-            style={{ marginTop: "16px" }}
-          >
-            <form onSubmit={handlePasswordChange}>
-              <div>
-                <label>Current Password</label>
-                <input
-                  type="password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                />
+              {isEditingProfile && (
+                <form onSubmit={handleProfileUpdate}>
+                  <div className={css["profile-page-stat-list"]}>
+                    <StatTextInput
+                      title="Display Name"
+                      value={displayName}
+                      setValue={setDisplayName}
+                      size={css["stat-input-md"]}
+                    />
+                    <StatTextInput
+                      title="Username"
+                      value={username}
+                      setValue={setUsername}
+                      size={css["stat-input-md"]}
+                    />
+                  </div>
+                  {profileMsg && (
+                    <div
+                      className={
+                        profileMsg.includes("success")
+                          ? css["profile-msg-success"]
+                          : css["profile-msg-error"]
+                      }
+                    >
+                      {profileMsg}
+                    </div>
+                  )}
+                  <div className={css["profile-form-footer"]}>
+                    <div>
+                      <button className={css["text-button"]} type="submit">
+                        Save
+                      </button>
+                      <button
+                        className={css["text-button-cancel"]}
+                        type="button"
+                        onClick={() => {
+                          setIsEditingProfile(false);
+                          setProfileMsg("");
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            {/* Password card */}
+            <div className={css["profile-page-card"]}>
+              <div className={css["profile-page-card-header"]}>
+                <div className={css["panel-header"]}>Password</div>
+                <button
+                  className={`${css["action-icon-button"]} ${css["button-border"]}`}
+                  onClick={() => {
+                    setIsEditingPassword((prev) => !prev);
+                    setPasswordMsg("");
+                  }}
+                >
+                  <img
+                    className={css["button-icon"]}
+                    src={getAsset(iconEditSrc)}
+                    alt="edit icon"
+                  />
+                </button>
               </div>
-              <div>
-                <label>New Password</label>
-                <input
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
-              <div>
-                <label>Confirm New Password</label>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-              {passwordMsg && <div>{passwordMsg}</div>}
-              <button type="submit">Change Password</button>
-            </form>
+
+              {!isEditingPassword && (
+                <StatDisplay title="Password" value="••••••••" />
+              )}
+
+              {isEditingPassword && (
+                <form onSubmit={handlePasswordChange}>
+                  <div className={css["profile-page-stat-list"]}>
+                    <StatTextInput
+                      title="Current Password"
+                      value={currentPassword}
+                      setValue={setCurrentPassword}
+                      size={css["stat-input-md"]}
+                    />
+                    <StatTextInput
+                      title="New Password"
+                      value={newPassword}
+                      setValue={setNewPassword}
+                      size={css["stat-input-md"]}
+                    />
+                    <StatTextInput
+                      title="Confirm New Password"
+                      value={confirmPassword}
+                      setValue={setConfirmPassword}
+                      size={css["stat-input-md"]}
+                    />
+                  </div>
+                  {passwordMsg && (
+                    <div
+                      className={
+                        passwordMsg.includes("success")
+                          ? css["profile-msg-success"]
+                          : css["profile-msg-error"]
+                      }
+                    >
+                      {passwordMsg}
+                    </div>
+                  )}
+                  <div className={css["dialog-footer"]}>
+                    <div>
+                      <button className={css["text-button"]} type="submit">
+                        Save
+                      </button>
+                      <button
+                        className={css["text-button-cancel"]}
+                        type="button"
+                        onClick={() => {
+                          setIsEditingPassword(false);
+                          setPasswordMsg("");
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
+          <div></div>
         </div>
       </div>
       <div></div>

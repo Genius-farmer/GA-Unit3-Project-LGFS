@@ -234,12 +234,13 @@
   border: 1px solid #e1e1e1;
   background-color: #f8f8f8;
   height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .stat-input-base * {
   border: none;
   background: none;
-  height: 100%;
 }
 
 .stat-input-base select {
@@ -399,6 +400,16 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.8rem;
+}
+
+.stat-input-base:focus-within {
+  outline: 2px solid #0066cc;
+  border-color: #0066cc;
+}
+
+.stat-input-base input:focus {
+  outline: none;
 }
 
 .streak-container {
@@ -418,4 +429,141 @@ textarea:focus {
 
 .streak-off {
   color: lightgray;
+}
+
+.profile-page-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 1rem 2rem;
+  min-width: 600px;
+}
+
+.profile-page-card {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.profile-page-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-page-icon {
+  align-self: center;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-page-stat-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+}
+
+.profile-msg-error {
+  font-size: 0.8rem;
+  color: #cc2c29;
+}
+
+.profile-msg-success {
+  font-size: 0.8rem;
+  color: green;
+}
+
+.profile-form-footer {
+  display: flex;
+  margin-top: 0.8rem;
+}
+
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  min-width: 1200px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.admin-panel-card {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.admin-config-item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.admin-config-item:last-child {
+  border-bottom: none;
+}
+
+.admin-config-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #919191;
+}
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.admin-form-field input[type="text"] {
+  border: 1px solid #e1e1e1;
+  background-color: #ffffff;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.admin-form-field input[type="text"]:focus {
+  outline: none;
+  border-color: #cc2c29;
+}
+
+.admin-checkbox-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.admin-msg-error {
+  font-size: 0.8rem;
+  color: #cc2c29;
+}
+
+.admin-msg-success {
+  font-size: 0.8rem;
+  color: green;
 }
