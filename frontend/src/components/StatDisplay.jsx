@@ -6,7 +6,7 @@ const StatDisplay = (props) => {
   if (props.addCss) baseCss.push(props.addCss);
   return (
     <div className={baseCss.join(" ")}>
-      <div className={css["stat-label"]}>{props.label}</div>
+      <div className={css["stat-label"]}>{props.title}</div>
       <div className={css["stat-value"]}>{props.value}</div>
     </div>
   );

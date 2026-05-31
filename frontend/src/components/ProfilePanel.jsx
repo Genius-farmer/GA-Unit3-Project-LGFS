@@ -65,15 +65,15 @@ const ProfilePanel = (props) => {
         <img className={css["profile-panel-icon"]} src={getProfileIcon(userCtx.profileImage)} alt="profile icon" />
         <div className={css["greeting"]}>Hello {userCtx.displayName}!</div>
         <div className={css["stat-list"]}>
-          <StatDisplay addCss={css["stat-list-profile"]} label="Activities" value={activitiesCount} />
-          <StatDisplay addCss={css["stat-list-profile"]} label="Total Duration" value={activitiesDuration} />
+          <StatDisplay addCss={css["stat-list-profile"]} title="Activities" value={activitiesCount} />
+          <StatDisplay addCss={css["stat-list-profile"]} title="Total Duration" value={activitiesDuration} />
         </div>
       </div>
       <div className={css["profile-panel-card"]}>
         <div className={css["stat-list"]}>
           <StatDisplay
             addCss={css["stat-list-profile"]}
-            label="Latest activity"
+            title="Latest activity"
             value={
               <>
                 {latestActivity.type && (

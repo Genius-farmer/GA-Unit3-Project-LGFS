@@ -36,10 +36,10 @@ const RecordedActivityCard = (props) => {
       </div>
       <div className={css["comment"]}>{comments}</div>
       <div className={css["stat-list"]}>
-        {distance_m_toggle && <StatDisplay label="Distance" value={distance_m} />}
-        {duration_ms_toggle && <StatDisplay label="Duration" value={getDurationString(duration_ms)} />}
-        {laps_toggle && <StatDisplay label="Laps" value={laps} />}
-        {intensity_level_toggle && <StatDisplay label="Intensity" value={getIntensityString(intensity_level)} />}
+        {distance_m_toggle && <StatDisplay title="Distance" value={distance_m} />}
+        {duration_ms_toggle && <StatDisplay title="Duration" value={getDurationString(duration_ms)} />}
+        {laps_toggle && <StatDisplay title="Laps" value={laps} />}
+        {intensity_level_toggle && <StatDisplay title="Intensity" value={getIntensityString(intensity_level)} />}
       </div>
     </div>
   );
