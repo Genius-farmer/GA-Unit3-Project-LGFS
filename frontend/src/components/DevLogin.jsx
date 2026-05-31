@@ -3,6 +3,7 @@ import UserContext from "../context/UserContext.js";
 import { sharedFetch } from "../utils/fetchingUtils.js";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import ToggleButton from "./ToggleButton.jsx";
 
 const DevLogin = () => {
   const [isError, setIsError] = useState(false);
@@ -31,9 +32,13 @@ const DevLogin = () => {
     }
   };
 
+  // -Toggle Button Use
+  const [toggleState, setToggleState] = useState(false);
+
   return (
     <div>
       <button onClick={handleDevLogin}>DEV LOGIN</button>
+      <ToggleButton isChecked={toggleState} setIsChecked={setToggleState} />
     </div>
   );
 };

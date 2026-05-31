@@ -1,0 +1,44 @@
+.toggle-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  border-radius: 0.2rem;
+  padding: 0.1rem;
+  width: 3rem;
+  height: 1.5rem;
+  background-color: gray;
+  box-shadow: inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.toggle-thumb {
+  border-radius: 0.2rem;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-track:has(.toggle-input:checked) {
+  background-color: #4caf50;
+}
+
+.toggle-thumb:has(.toggle-input:checked) {
+  transform: translateX(100%);
+}
+
+/* Focus indicator for keyboard accessibility */
+.toggle-track:has(.toggle-input:focus-visible) {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
