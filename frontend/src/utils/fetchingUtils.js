@@ -5,6 +5,16 @@ export const userEndpoints = {
   createRecordedActivity: "/api/activities/recorded",
   updateRecordedActivityById: "/api/activities/recorded",
   deleteRecordedActivityById: "/api/activities/recorded",
+  getMe: "/api/accounts/details",
+  updateMe: "/api/accounts/details",
+  changePassword: "/api/accounts/password",
+  getAdminConfigs: "/api/activities/admin",
+  createAdminConfig: "/api/activities/admin",
+  updateAdminConfig: "/api/activities/admin",
+  deleteAdminConfig: "/api/activities/admin",
+  getAdminUsers: "/api/admin/accounts",
+  updateAdminUserRole: "/api/admin/accounts/access",
+  deleteAdminUser: "/api/admin/accounts",
 };
 
 export const getBearerHeader = (token) => {
@@ -30,7 +40,11 @@ export const sharedFetch = () => {
         if (data?.message) {
           if (Array.isArray(data.message)) {
             console.error("Array(data.message)", data.message[0].message);
-            return { status: res.status, ok: false, message: data.message[0].message };
+            return {
+              status: res.status,
+              ok: false,
+              message: data.message[0].message,
+            };
           } else {
             console.error("data.message", data.message);
             return { status: res.status, ok: false, message: data.message };

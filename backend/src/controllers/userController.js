@@ -74,7 +74,8 @@ const deleteMe = async (req, res) => {
 
 const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.body.user_id);
+    // const user = await User.findById(req.body.user_id); - i was working on user profile here....NTS
+    const user = await User.findById(req.user.id, "-password");
     if (!user) {
       return res
         .status(404)
@@ -92,9 +93,7 @@ const updateMe = async (req, res) => {
     const updateDetails = {};
 
     if ("displayName" in req.body)
-      updateDetails.displayName = req.body.display_name;
-    if ("password" in req.body)
-      updateDetails.password = await bcrypt.hash(req.body.password, 12);
+      updateDetails.displayName = req.body.displayName;
     if ("username" in req.body) updateDetails.username = req.body.username;
 
     if (Object.keys(updateDetails).length === 0) {
@@ -104,7 +103,7 @@ const updateMe = async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.body.user_id,
+      req.user.id,
       updateDetails,
     );
     res.status(200).json({ status: "ok", message: "Profile updated" });
