@@ -1,4 +1,4 @@
-const profileImages = [
+export const profileImages = [
   { img: "icon-generic.png" },
   { img: "icon-running.png" },
   { img: "icon-trail-running.png" },
