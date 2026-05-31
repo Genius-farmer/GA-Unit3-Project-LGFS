@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router";
 import css from "../styles/HomePage.module.css";
 import UserContext from "../context/UserContext.js";
-import { defaultProfileSrc, getAsset, navLogoSrc } from "../utils/assetUtils.js";
+import { getAsset, navLogoSrc } from "../utils/assetUtils.js";
+import { getProfileIcon } from "../utils/profileUtils.js";
 
 const UserNavBar = () => {
   const userCtx = useContext(UserContext);
@@ -16,7 +17,7 @@ const UserNavBar = () => {
         </div>
         <div className={css["nav-secondary"]}>
           <div className={css["profile-link"]}>
-            <img className={css["profile-img"]} src={getAsset(defaultProfileSrc)} />
+            <img className={css["profile-img"]} src={getProfileIcon(userCtx.profileImage)} />
             <NavLink to="/user/profile" data-text="Profile">
               {userCtx.displayName}
             </NavLink>

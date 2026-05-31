@@ -15,6 +15,7 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const [displayName, setDisplayName] = useState("Guest");
   const [role, setRole] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   return (
     <div className={`${cssMain["main-wrapper"]}`}>
@@ -26,6 +27,8 @@ function App() {
           setDisplayName,
           role,
           setRole,
+          profileImage,
+          setProfileImage,
         }}
       >
         <Routes>

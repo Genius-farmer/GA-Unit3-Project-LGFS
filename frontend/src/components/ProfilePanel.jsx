@@ -62,7 +62,7 @@ const ProfilePanel = (props) => {
     <div className={css["profile-panel"]}>
       <div className={`${css["panel-header"]} ${css["panel-header-profile"]}`}>&nbsp;</div>
       <div className={css["profile-panel-card"]}>
-        <img className={css["profile-panel-icon"]} src={getProfileIcon(0)} alt="profile icon" />
+        <img className={css["profile-panel-icon"]} src={getProfileIcon(userCtx.profileImage)} alt="profile icon" />
         <div className={css["greeting"]}>Hello {userCtx.displayName}!</div>
         <div className={`${css["stat-list"]}`}>
           <StatDisplay addCss={css["stat-list-profile"]} label="Activities" value={activitiesCount} />

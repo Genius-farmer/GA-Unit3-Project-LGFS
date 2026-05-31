@@ -10,6 +10,6 @@ const profileImages = [
 ];
 
 export const getProfileIcon = (iconId) => {
-  const idx = iconId < 0 || iconId >= profileImages.length ? 0 : iconId;
+  const idx = iconId && !(iconId < 0 || iconId >= profileImages.length) ? iconId : 0;
   return new URL(`../assets/images/${profileImages[idx].img}`, import.meta.url).href;
 };
