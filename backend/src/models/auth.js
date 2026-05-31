@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { RecordedActivitySchema } from "./RecordedActivityModel.js";
+import { PlannedActivitySchema } from "./PlannedActivityModel.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -28,6 +29,7 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
     recorded_activities: { type: [RecordedActivitySchema], default: [] },
+    planned_activities: { type: [PlannedActivitySchema], default: [] },
   },
   { timestamps: true },
 );
