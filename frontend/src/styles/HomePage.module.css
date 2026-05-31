@@ -412,10 +412,6 @@ textarea:focus {
   font-size: 1rem;
 }
 
-.streak-label {
-  font-size: 1rem;
-}
-
 .streak-on {
   color: green;
 }

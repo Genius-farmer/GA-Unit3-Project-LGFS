@@ -10,7 +10,7 @@ const StreakComponent = (props) => {
         {props.weekStreak &&
           ["M", "T", "W", "T", "F", "S", "S"].map((label, idx) => (
             <div key={idx} className={css["streak-day"]}>
-              <div className={css["streak-label"]}>{label}</div>
+              <div className={css["stat-value"]}>{label}</div>
               <div className={props.weekStreak[idx] ? css["streak-on"] : css["streak-off"]}>●</div>
             </div>
           ))}
