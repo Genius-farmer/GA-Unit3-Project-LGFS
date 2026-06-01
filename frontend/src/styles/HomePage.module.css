@@ -574,6 +574,12 @@ textarea:focus {
   font-size: 0.85rem;
 }
 
+.admin-toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .admin-msg-error {
   font-size: 0.8rem;
   color: #cc2c29;
@@ -582,6 +588,12 @@ textarea:focus {
 .admin-msg-success {
   font-size: 0.8rem;
   color: green;
+}
+
+.admin-toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .prompt-box {

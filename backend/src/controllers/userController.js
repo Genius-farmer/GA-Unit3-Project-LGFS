@@ -74,7 +74,6 @@ const deleteMe = async (req, res) => {
 
 const getMe = async (req, res) => {
   try {
-    // const user = await User.findById(req.body.user_id); - i was working on user profile here....NTS
     const user = await User.findById(req.user.id, "-password");
     if (!user) {
       return res

@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/auth.js";
 
-// Put /api/auth/register
 const register = async (req, res) => {
   try {
     const { username, password, displayName } = req.body;
@@ -32,7 +31,6 @@ const register = async (req, res) => {
   }
 };
 
-// POST /api/auth/login
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -52,7 +50,12 @@ const login = async (req, res) => {
     }
 
     const accessToken = jwt.sign(
-      { id: user._id, username: user.username, role: user.role, displayName: user.displayName },
+      {
+        id: user._id,
+        username: user.username,
+        role: user.role,
+        displayName: user.displayName,
+      },
       process.env.ACCESS_SECRET,
       { expiresIn: "1d" },
     );
@@ -67,9 +70,4 @@ const login = async (req, res) => {
   }
 };
 
-// POST /api/auth/logout
-const logout = async (req, res) => {
-  res.status(200).json({ status: "ok", message: "Logged out successfully" });
-};
-
-export { register, login, logout };
+export { register, login };
