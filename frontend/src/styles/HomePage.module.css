@@ -34,7 +34,7 @@
   height: 100%;
 }
 
-.nav-container a {
+.nav-link {
   color: black;
   font-weight: 600;
   text-decoration: none;
@@ -55,6 +55,11 @@
   user-select: none;
   pointer-events: none;
   font-weight: 600;
+}
+
+.nav-link-active {
+  text-decoration: underline #cc2c29 solid 3px;
+  text-underline-offset: 6px;
 }
 
 .nav-logo {
