@@ -7,11 +7,7 @@ import UserNavBar from "./UserNavBar.jsx";
 import AdminNavBar from "./AdminNavBar.jsx";
 import StatDisplay from "./StatDisplay.jsx";
 import StatTextInput from "./StatTextInput.jsx";
-import {
-  getBearerHeader,
-  sharedFetch,
-  userEndpoints,
-} from "../utils/fetchingUtils.js";
+import { getBearerHeader, sharedFetch, userEndpoints } from "../utils/fetchingUtils.js";
 
 const ProfilePage = () => {
   const userCtx = useContext(UserContext);
@@ -98,11 +94,7 @@ const ProfilePage = () => {
           <div className={css["profile-page-content"]}>
             {/* Profile icon card */}
             <div className={css["profile-page-card"]}>
-              <img
-                className={css["profile-page-icon"]}
-                src={getProfileIcon(profileIconId)}
-                alt="profile icon"
-              />
+              <img className={css["profile-page-icon"]} src={getProfileIcon(profileIconId)} alt="profile icon" />
               <div className={css["greeting"]}>{userCtx.displayName}</div>
             </div>
 
@@ -117,20 +109,13 @@ const ProfilePage = () => {
                     setProfileMsg("");
                   }}
                 >
-                  <img
-                    className={css["button-icon"]}
-                    src={getAsset(iconEditSrc)}
-                    alt="edit icon"
-                  />
+                  <img className={css["button-icon"]} src={getAsset(iconEditSrc)} alt="edit icon" />
                 </button>
               </div>
 
               {!isEditingProfile && (
                 <div className={css["profile-page-stat-list"]}>
-                  <StatDisplay
-                    title="Display Name"
-                    value={displayName || "-"}
-                  />
+                  <StatDisplay title="Display Name" value={displayName || "-"} />
                   <StatDisplay title="Username" value={username || "-"} />
                 </div>
               )}
@@ -153,11 +138,7 @@ const ProfilePage = () => {
                   </div>
                   {profileMsg && (
                     <div
-                      className={
-                        profileMsg.includes("success")
-                          ? css["profile-msg-success"]
-                          : css["profile-msg-error"]
-                      }
+                      className={profileMsg.includes("success") ? css["profile-msg-success"] : css["profile-msg-error"]}
                     >
                       {profileMsg}
                     </div>
@@ -194,17 +175,11 @@ const ProfilePage = () => {
                     setPasswordMsg("");
                   }}
                 >
-                  <img
-                    className={css["button-icon"]}
-                    src={getAsset(iconEditSrc)}
-                    alt="edit icon"
-                  />
+                  <img className={css["button-icon"]} src={getAsset(iconEditSrc)} alt="edit icon" />
                 </button>
               </div>
 
-              {!isEditingPassword && (
-                <StatDisplay title="Password" value="••••••••" />
-              )}
+              {!isEditingPassword && <StatDisplay title="Password" value="••••••••" />}
 
               {isEditingPassword && (
                 <form onSubmit={handlePasswordChange}>
@@ -214,26 +189,27 @@ const ProfilePage = () => {
                       value={currentPassword}
                       setValue={setCurrentPassword}
                       size={css["stat-input-md"]}
+                      type="password"
                     />
                     <StatTextInput
                       title="New Password"
                       value={newPassword}
                       setValue={setNewPassword}
                       size={css["stat-input-md"]}
+                      type="password"
                     />
                     <StatTextInput
                       title="Confirm New Password"
                       value={confirmPassword}
                       setValue={setConfirmPassword}
                       size={css["stat-input-md"]}
+                      type="password"
                     />
                   </div>
                   {passwordMsg && (
                     <div
                       className={
-                        passwordMsg.includes("success")
-                          ? css["profile-msg-success"]
-                          : css["profile-msg-error"]
+                        passwordMsg.includes("success") ? css["profile-msg-success"] : css["profile-msg-error"]
                       }
                     >
                       {passwordMsg}
