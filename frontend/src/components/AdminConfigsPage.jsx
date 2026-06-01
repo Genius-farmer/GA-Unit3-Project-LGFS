@@ -141,46 +141,26 @@ const AdminConfigsPage = () => {
                     />
                   </div>
                   <div className={css["admin-checkbox-list"]}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={distanceToggle}
-                        onChange={(e) => setDistanceToggle(e.target.checked)}
-                      />{" "}
-                      Distance
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={durationToggle}
-                        onChange={(e) => setDurationToggle(e.target.checked)}
-                      />{" "}
-                      Duration
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={lapsToggle}
-                        onChange={(e) => setLapsToggle(e.target.checked)}
-                      />{" "}
-                      Laps
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={intensityToggle}
-                        onChange={(e) => setIntensityToggle(e.target.checked)}
-                      />{" "}
-                      Intensity
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={commentsToggle}
-                        onChange={(e) => setCommentsToggle(e.target.checked)}
-                      />{" "}
-                      Comments
-                    </label>
+                    <div className={css["admin-toggle-item"]}>
+                      <span>Distance</span>
+                      <ToggleButton isChecked={distanceToggle} setIsChecked={setDistanceToggle} />
+                    </div>
+                    <div className={css["admin-toggle-item"]}>
+                      <span>Duration</span>
+                      <ToggleButton isChecked={durationToggle} setIsChecked={setDurationToggle} />
+                    </div>
+                    <div className={css["admin-toggle-item"]}>
+                      <span>Laps</span>
+                      <ToggleButton isChecked={lapsToggle} setIsChecked={setLapsToggle} />
+                    </div>
+                    <div className={css["admin-toggle-item"]}>
+                      <span>Intensity</span>
+                      <ToggleButton isChecked={intensityToggle} setIsChecked={setIntensityToggle} />
+                    </div>
+                    <div className={css["admin-toggle-item"]}>
+                      <span>Comments</span>
+                      <ToggleButton isChecked={commentsToggle} setIsChecked={setCommentsToggle} />
+                    </div>
                   </div>
                   {createMsg && (
                     <div
@@ -262,54 +242,26 @@ const AdminConfigsPage = () => {
                           />
                         </div>
                         <div className={css["admin-checkbox-list"]}>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={editDistance}
-                              onChange={(e) =>
-                                setEditDistance(e.target.checked)
-                              }
-                            />{" "}
-                            Distance
-                          </label>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={editDuration}
-                              onChange={(e) =>
-                                setEditDuration(e.target.checked)
-                              }
-                            />{" "}
-                            Duration
-                          </label>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={editLaps}
-                              onChange={(e) => setEditLaps(e.target.checked)}
-                            />{" "}
-                            Laps
-                          </label>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={editIntensity}
-                              onChange={(e) =>
-                                setEditIntensity(e.target.checked)
-                              }
-                            />{" "}
-                            Intensity
-                          </label>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={editComments}
-                              onChange={(e) =>
-                                setEditComments(e.target.checked)
-                              }
-                            />{" "}
-                            Comments
-                          </label>
+                          <div className={css["admin-toggle-item"]}>
+                            <span>Distance</span>
+                            <ToggleButton isChecked={editDistance} setIsChecked={setEditDistance} />
+                          </div>
+                          <div className={css["admin-toggle-item"]}>
+                            <span>Duration</span>
+                            <ToggleButton isChecked={editDuration} setIsChecked={setEditDuration} />
+                          </div>
+                          <div className={css["admin-toggle-item"]}>
+                            <span>Laps</span>
+                            <ToggleButton isChecked={editLaps} setIsChecked={setEditLaps} />
+                          </div>
+                          <div className={css["admin-toggle-item"]}>
+                            <span>Intensity</span>
+                            <ToggleButton isChecked={editIntensity} setIsChecked={setEditIntensity} />
+                          </div>
+                          <div className={css["admin-toggle-item"]}>
+                            <span>Comments</span>
+                            <ToggleButton isChecked={editComments} setIsChecked={setEditComments} />
+                          </div>
                         </div>
                         {editMsg && (
                           <div className={css["admin-msg-error"]}>

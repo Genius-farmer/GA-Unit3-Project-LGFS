@@ -107,9 +107,7 @@ const AuthPage = () => {
             />
           </div>
 
-          {errorMessage && (
-            <p className={css["auth-error"]}>{errorMessage}</p>
-          )}
+          {errorMessage && <p className={css["auth-error"]}>{errorMessage}</p>}
           {successMessage && (
             <p className={css["auth-success"]}>{successMessage}</p>
           )}
@@ -137,24 +135,7 @@ const AuthPage = () => {
               habits, and progress with confidence.
             </div>
             <div className={css["auth-description-line"]}>
-              Record your movement.
-              <br />
-              See your progress.
-            </div>
-            <div className={css["auth-description-line"]}>
-              Start recording.
-              <br />
-              Keep progressing.
-            </div>
-            <div className={css["auth-description-line"]}>
-              Log your fitness.
-              <br />
-              See your growth.
-            </div>
-            <div className={css["auth-description-line"]}>
-              Record today.
-              <br />
-              Move better tomorrow.
+              Record today. Move better tomorrow.
             </div>
           </div>
         </div>
