@@ -5,11 +5,13 @@ import User from "../models/auth.js";
 // Put /api/auth/register
 const register = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, displayName } = req.body;
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
-      return res.status(409).json({ status: "error", message: "Username already taken" });
+      return res
+        .status(409)
+        .json({ status: "error", message: "Username already taken" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -17,6 +19,7 @@ const register = async (req, res) => {
     const newUser = await User.create({
       username,
       password: hashedPassword,
+      displayName: displayName || "",
     });
 
     res.status(201).json({
@@ -36,16 +39,20 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(401).json({ status: "error", message: "Invalid credentials" });
+      return res
+        .status(401)
+        .json({ status: "error", message: "Invalid credentials" });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401).json({ status: "error", message: "Invalid credentials" });
+      return res
+        .status(401)
+        .json({ status: "error", message: "Invalid credentials" });
     }
 
     const accessToken = jwt.sign(
-      { id: user._id, username: user.username, role: user.role },
+      { id: user._id, username: user.username, role: user.role, displayName: user.displayName },
       process.env.ACCESS_SECRET,
       { expiresIn: "1d" },
     );
