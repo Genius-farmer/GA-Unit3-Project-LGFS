@@ -4,7 +4,6 @@ import { getProfileIcon } from "../utils/profileUtils.js";
 import { getAsset, iconEditSrc } from "../utils/assetUtils.js";
 import UserContext from "../context/UserContext.js";
 import UserNavBar from "./UserNavBar.jsx";
-import AdminNavBar from "./AdminNavBar.jsx";
 import StatDisplay from "./StatDisplay.jsx";
 import StatTextInput from "./StatTextInput.jsx";
 import {
@@ -92,7 +91,7 @@ const ProfilePage = () => {
     <div className={css["app-wrapper"]}>
       <div></div>
       <div className={css["app-container"]}>
-        {userCtx.role === "admin" ? <AdminNavBar /> : <UserNavBar />}
+        <UserNavBar />
         <div className={css["user-dashboard"]}>
           <div></div>
           <div className={css["profile-page-content"]}>
