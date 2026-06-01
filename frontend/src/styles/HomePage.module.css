@@ -245,12 +245,13 @@
   border: 1px solid #e1e1e1;
   background-color: #f8f8f8;
   height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .stat-input-base * {
   border: none;
   background: none;
-  height: 100%;
 }
 
 .stat-input-base select {
@@ -410,6 +411,16 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.8rem;
+}
+
+.stat-input-base:focus-within {
+  outline: 2px solid #0066cc;
+  border-color: #0066cc;
+}
+
+.stat-input-base input:focus {
+  outline: none;
 }
 
 .streak-container {

@@ -8,7 +8,7 @@ const AdminRoute = (props) => {
   const isAdmin = userCtx.role === "admin";
 
   if (!isAuthenticated) return <Navigate to="/" replace />;
-  if (!isAdmin) return <Navigate to="/user/dashboard" replace />;
+  if (!isAdmin) return <Navigate to="/" replace />;
   return props.children;
 };
 
