@@ -15,6 +15,8 @@ const ProfilePage = () => {
 
   const [profileIconId] = useState(0);
 
+  const [currentUsername, setCurrentUsername] = useState("");
+
   const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -33,6 +35,7 @@ const ProfilePage = () => {
     if (!res.ok) return;
     setDisplayName(res.data?.data?.displayName || "");
     setUsername(res.data?.data?.username || "");
+    setCurrentUsername(res.data?.data?.username || "");
   };
 
   useEffect(() => {
@@ -54,6 +57,7 @@ const ProfilePage = () => {
     }
 
     userCtx.setDisplayName(displayName);
+    setCurrentUsername(username);
     setProfileMsg("Profile updated successfully!");
     setIsEditingProfile(false);
   };
@@ -107,6 +111,8 @@ const ProfilePage = () => {
                   onClick={() => {
                     setIsEditingProfile((prev) => !prev);
                     setProfileMsg("");
+                    setDisplayName(userCtx.displayName);
+                    setUsername(currentUsername);
                   }}
                 >
                   <img className={css["button-icon"]} src={getAsset(iconEditSrc)} alt="edit icon" />
@@ -115,8 +121,8 @@ const ProfilePage = () => {
 
               {!isEditingProfile && (
                 <div className={css["profile-page-stat-list"]}>
-                  <StatDisplay title="Display Name" value={displayName || "-"} />
-                  <StatDisplay title="Username" value={username || "-"} />
+                  <StatDisplay title="Display Name" value={userCtx.displayName || "-"} />
+                  <StatDisplay title="Username" value={currentUsername || "-"} />
                 </div>
               )}
 
@@ -173,6 +179,9 @@ const ProfilePage = () => {
                   onClick={() => {
                     setIsEditingPassword((prev) => !prev);
                     setPasswordMsg("");
+                    setCurrentPassword("");
+                    setNewPassword("");
+                    setConfirmPassword("");
                   }}
                 >
                   <img className={css["button-icon"]} src={getAsset(iconEditSrc)} alt="edit icon" />
