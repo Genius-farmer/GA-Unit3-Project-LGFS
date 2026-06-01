@@ -4,9 +4,7 @@ const verifyToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res
-      .status(401)
-      .json({ status: "error", message: "Access token missing" });
+    return res.status(401).json({ status: "error", message: "Access token missing" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -14,12 +12,9 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
     req.user = decoded;
-    console.log("Verify successful");
     next();
   } catch (err) {
-    return res
-      .status(401)
-      .json({ status: "error", message: "Access token invalid or expired" });
+    return res.status(401).json({ status: "error", message: "Access token invalid or expired" });
   }
 };
 
