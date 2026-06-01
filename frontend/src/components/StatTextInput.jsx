@@ -13,7 +13,7 @@ const StatTextInput = (props) => {
         <div className={css["stat-units-wrapper"]}>
           <input
             className={css["input-padding"]}
-            type="text"
+            type={props.type || "text"}
             name={props.title}
             value={props.value}
             {...(props.maxLength && { maxLength: props.maxLength })}
