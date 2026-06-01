@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import UserContext from "../context/UserContext.js";
 import { sharedFetch } from "../utils/fetchingUtils.js";
 import css from "../styles/App.module.css";
+import cssHome from "../styles/Homepage.module.css";
 import { getAsset, navLogoSrc } from "../utils/assetUtils.js";
 
 const AuthPage = () => {
@@ -69,53 +70,30 @@ const AuthPage = () => {
       <div className={css["auth-card"]}>
         {/* LEFT — login form */}
         <div className={css["auth-left"]}>
-          <img
-            className={css["auth-logo"]}
-            src={getAsset(navLogoSrc)}
-            alt="logo"
-          />
-          <div className={css["auth-title"]}>
-            {isLogin ? "Login" : "Register"}
-          </div>
+          <img className={css["auth-logo"]} src={getAsset(navLogoSrc)} alt="logo" />
+          <div className={css["auth-title"]}>{isLogin ? "Login" : "Register"}</div>
 
           <div className={css["auth-field"]}>
             <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
 
           {!isLogin && (
             <div className={css["auth-field"]}>
               <label>Display Name</label>
-              <input
-                type="text"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-              />
+              <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
             </div>
           )}
 
           <div className={css["auth-field"]}>
             <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
 
           {errorMessage && <p className={css["auth-error"]}>{errorMessage}</p>}
-          {successMessage && (
-            <p className={css["auth-success"]}>{successMessage}</p>
-          )}
+          {successMessage && <p className={css["auth-success"]}>{successMessage}</p>}
 
-          <button
-            className={css["text-button"]}
-            onClick={isLogin ? handleLogin : handleRegister}
-          >
+          <button className={cssHome["text-button"]} onClick={isLogin ? handleLogin : handleRegister}>
             {isLogin ? "Login" : "Register"}
           </button>
 
@@ -131,11 +109,12 @@ const AuthPage = () => {
         <div className={css["auth-right"]}>
           <div className={css["auth-description"]}>
             <div className={css["auth-description-subtitle"]}>
-              A fitness tracking app that helps you record movement, build
-              habits, and progress with confidence.
+              A fitness tracking app that helps you record movement, build habits, and progress with confidence.
             </div>
             <div className={css["auth-description-line"]}>
-              Record today. Move better tomorrow.
+              Record today.
+              <br />
+              Move better tomorrow.
             </div>
           </div>
         </div>

@@ -627,3 +627,33 @@ textarea:focus {
   text-underline-offset: 6px;
   margin-top: 2rem;
 }
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 0 2rem;
+}
+
+.future-feature-wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-left: none;
+  padding: 2.5rem;
+  color: #ffffff;
+  min-height: 50vh;
+  background:
+    linear-gradient(135deg, rgba(15, 15, 15, 0.8), rgba(204, 44, 41, 0.45)),
+    url("../assets/images/pexels-jondave-libiran-1263568-2405638.jpg") center center / cover no-repeat;
+  isolation: isolate;
+}
+
+.future-feature-description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  max-width: 22rem;
+}
