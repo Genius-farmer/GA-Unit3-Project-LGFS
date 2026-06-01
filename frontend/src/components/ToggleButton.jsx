@@ -7,8 +7,8 @@ const ToggleButton = (props) => {
   };
 
   return (
-    <div className={css["toggle-container"]}>
-      <div className={css["toggle-track"]} onClick={handleToggle}>
+    <div className={css["toggle-container"]} onClick={handleToggle}>
+      <div className={css["toggle-track"]}>
         <div className={css["toggle-thumb"]}>
           <input
             className={css["toggle-input"]}
@@ -18,6 +18,7 @@ const ToggleButton = (props) => {
           />
         </div>
       </div>
+      <div className={css["toggle-label"]}>{props.label}</div>
     </div>
   );
 };

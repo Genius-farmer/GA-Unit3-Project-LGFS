@@ -38,7 +38,7 @@ const DevLogin = () => {
   return (
     <div>
       <button onClick={handleDevLogin}>DEV LOGIN</button>
-      <ToggleButton isChecked={toggleState} setIsChecked={setToggleState} />
+      <ToggleButton isChecked={toggleState} setIsChecked={setToggleState} label="Distance" />
     </div>
   );
 };
