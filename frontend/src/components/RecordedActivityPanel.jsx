@@ -83,6 +83,7 @@ const RecordedActivityPanel = (props) => {
           </button>
         </div>
         {isReady &&
+          activities.length > 0 &&
           activities.map((item) => (
             <RecordedActivityCard
               key={item._id}
@@ -91,6 +92,12 @@ const RecordedActivityPanel = (props) => {
               onClick={handleEditActivity}
             />
           ))}
+        {isReady && !(activities.length > 0) && (
+          <div className={css["rec-activity-card-container"]}>
+            You have no activities. <br />
+            Start recording one now.
+          </div>
+        )}
       </div>
     </>
   );
