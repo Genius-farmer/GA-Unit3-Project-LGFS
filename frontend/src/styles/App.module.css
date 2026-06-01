@@ -7,8 +7,8 @@
 .auth-wrapper {
   height: 100vh;
   display: flex;
+  width: 100%;
   justify-content: center;
-  align-items: center;
 }
 
 .auth-card {
@@ -20,6 +20,8 @@
   min-width: 22rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 5rem;
+  height: fit-content;
 }
 
 .auth-logo {
