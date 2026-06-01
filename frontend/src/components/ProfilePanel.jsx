@@ -30,7 +30,6 @@ const ProfilePanel = (props) => {
     });
 
     if (!res.ok && res.status === 401) {
-      console.log(res.status, res.message);
       if (props.notAuth) props.notAuth();
       return;
     }

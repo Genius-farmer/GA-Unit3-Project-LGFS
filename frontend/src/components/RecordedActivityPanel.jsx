@@ -17,6 +17,7 @@ const RecordedActivityPanel = (props) => {
   const [editId, setEditId] = useState(0);
   const [configs, setConfigs] = useState([]);
   const [isReady, setIsReady] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const getActivitiesAndConfig = async () => {
     const res = await fetchData(userEndpoints.getRecordedActivities, "GET", {
@@ -24,7 +25,6 @@ const RecordedActivityPanel = (props) => {
     });
 
     if (!res.ok && res.status === 401) {
-      console.log(res.status, res.message);
       if (props.notAuth) props.notAuth();
       return;
     }
@@ -36,7 +36,7 @@ const RecordedActivityPanel = (props) => {
 
     const res2 = await fetchData(userEndpoints.getActivityConfigs, "GET", {});
     if (!res2.ok) {
-      console.log("failed to get activity configs");
+      setIsError(true);
       return;
     }
     setConfigs(res2.data.result);
@@ -82,6 +82,11 @@ const RecordedActivityPanel = (props) => {
             <img className={css["button-icon"]} src={getAsset(iconAddSrc)} alt={`add activitiy icon`} />
           </button>
         </div>
+        {!isReady && isError && (
+          <div className={css["rec-activity-card-container"]}>
+            An expected error has occurred. Please try again later.
+          </div>
+        )}
         {isReady &&
           activities.length > 0 &&
           activities.map((item) => (

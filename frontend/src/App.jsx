@@ -14,6 +14,7 @@ import FourOFour from "./components/FourOFour.jsx";
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const [displayName, setDisplayName] = useState("Guest");
+  const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
@@ -25,6 +26,8 @@ function App() {
           setAccessToken,
           displayName,
           setDisplayName,
+          username,
+          setUsername,
           role,
           setRole,
           profileImage,
