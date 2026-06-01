@@ -30,6 +30,7 @@ const UpdateRecordedActivityDialog = (props) => {
   const userCtx = useContext(UserContext);
   const fetchData = sharedFetch();
   const [isReady, setIsReady] = useState(false);
+  const [isError, setIsError] = useState(false);
   const dialogRef = useRef(null);
 
   const [type, setType] = useState("");
@@ -52,7 +53,7 @@ const UpdateRecordedActivityDialog = (props) => {
   const getActivityAndConfig = async () => {
     const res = await fetchData(userEndpoints.getActivityConfigs, "GET", {});
     if (!res.ok) {
-      console.log("failed to get activity configs");
+      setIsError(true);
       return;
     }
 
@@ -72,7 +73,7 @@ const UpdateRecordedActivityDialog = (props) => {
     });
 
     if (!res2.ok) {
-      console.log("failed to get activity");
+      setIsError(true);
       return;
     }
 
@@ -157,7 +158,7 @@ const UpdateRecordedActivityDialog = (props) => {
       body,
     });
     if (!res.ok) {
-      console.log("failed to update activity");
+      setIsError(true);
       return;
     }
 
@@ -174,7 +175,7 @@ const UpdateRecordedActivityDialog = (props) => {
       body: { recorded_activity_id: props.id },
     });
     if (!res.ok) {
-      console.log("failed to delete activity");
+      setIsError(true);
       return;
     }
 
@@ -189,7 +190,8 @@ const UpdateRecordedActivityDialog = (props) => {
           <img className={css["button-icon"]} src={getAsset(iconCloseSrc)} alt={`close icon`} />
         </button>
       </div>
-      {!isReady && <div>Please wait...</div>}
+      {!isReady && !isError && <div>Please wait...</div>}
+      {!isReady && isError && <div>An error has occurred. Please try again later.</div>}
       {isReady && (
         <div className={css["dialog-card"]}>
           <div className={css["dialog-row"]}>
