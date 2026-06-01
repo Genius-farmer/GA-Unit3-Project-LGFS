@@ -19,12 +19,21 @@ const UserNavBar = () => {
       <img className={css["nav-logo"]} src={getAsset(navLogoSrc)} />
       <div className={css["nav-links"]}>
         <div className={css["nav-primary"]}>
-          <NavLink to="/user/dashboard">Dashboard</NavLink>
+          <NavLink
+            className={({ isActive }) => `${css["nav-link"]} ${isActive ? css["nav-link-active"] : ""}`}
+            to="/user/dashboard"
+          >
+            Dashboard
+          </NavLink>
         </div>
         <div className={css["nav-secondary"]}>
           <div className={css["profile-link"]}>
             <img className={css["profile-img"]} src={getProfileIcon(userCtx.profileImage)} />
-            <NavLink to="/user/profile" data-text="Profile">
+            <NavLink
+              className={({ isActive }) => `${css["nav-link"]} ${isActive ? css["nav-link-active"] : ""}`}
+              to="/user/profile"
+              data-text="Profile"
+            >
               {userCtx.displayName}
             </NavLink>
           </div>
