@@ -67,66 +67,96 @@ const AuthPage = () => {
   return (
     <div className={css["auth-wrapper"]}>
       <div className={css["auth-card"]}>
-        <img
-          className={css["auth-logo"]}
-          src={getAsset(navLogoSrc)}
-          alt="logo"
-        />
-        <div className={css["auth-title"]}>
-          {isLogin ? "Login" : "Register"}
-        </div>
-        <div className={css["auth-field"]}>
-          <label>Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+        {/* LEFT — login form */}
+        <div className={css["auth-left"]}>
+          <img
+            className={css["auth-logo"]}
+            src={getAsset(navLogoSrc)}
+            alt="logo"
           />
-        </div>
+          <div className={css["auth-title"]}>
+            {isLogin ? "Login" : "Register"}
+          </div>
 
-        {!isLogin && (
           <div className={css["auth-field"]}>
-            <label>Display Name</label>
+            <label>Username</label>
             <input
               type="text"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-        )}
 
-        <div className={css["auth-field"]}>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          {!isLogin && (
+            <div className={css["auth-field"]}>
+              <label>Display Name</label>
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+              />
+            </div>
+          )}
+
+          <div className={css["auth-field"]}>
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          {errorMessage && (
+            <p className={css["auth-error"]}>{errorMessage}</p>
+          )}
+          {successMessage && (
+            <p className={css["auth-success"]}>{successMessage}</p>
+          )}
+
+          <button
+            className={css["text-button"]}
+            onClick={isLogin ? handleLogin : handleRegister}
+          >
+            {isLogin ? "Login" : "Register"}
+          </button>
+
+          <div className={css["auth-footer"]}>
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
+            <button className={css["auth-toggle-btn"]} onClick={handleToggle}>
+              {isLogin ? "Register" : "Login"}
+            </button>
+          </div>
         </div>
 
-        {errorMessage && (
-          <p style={{ color: "red", fontSize: "0.8rem", margin: 0 }}>
-            {errorMessage}
-          </p>
-        )}
-        {successMessage && (
-          <p style={{ color: "green", fontSize: "0.8rem", margin: 0 }}>
-            {successMessage}
-          </p>
-        )}
-
-        <button
-          className={css["text-button"]}
-          onClick={isLogin ? handleLogin : handleRegister}
-        >
-          {isLogin ? "Login" : "Register"}
-        </button>
-
-        <div className={css["auth-footer"]}>
-          {isLogin ? "Don't have an account?" : "Already have an account?"}
-          <button className={css["auth-toggle-btn"]} onClick={handleToggle}>
-            {isLogin ? "Register" : "Login"}
-          </button>
+        {/* RIGHT — app description */}
+        <div className={css["auth-right"]}>
+          <div className={css["auth-description"]}>
+            <div className={css["auth-description-subtitle"]}>
+              A fitness tracking app that helps you record movement, build
+              habits, and progress with confidence.
+            </div>
+            <div className={css["auth-description-line"]}>
+              Record your movement.
+              <br />
+              See your progress.
+            </div>
+            <div className={css["auth-description-line"]}>
+              Start recording.
+              <br />
+              Keep progressing.
+            </div>
+            <div className={css["auth-description-line"]}>
+              Log your fitness.
+              <br />
+              See your growth.
+            </div>
+            <div className={css["auth-description-line"]}>
+              Record today.
+              <br />
+              Move better tomorrow.
+            </div>
+          </div>
         </div>
       </div>
     </div>
