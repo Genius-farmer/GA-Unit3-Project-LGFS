@@ -15,6 +15,8 @@ export const userEndpoints = {
   getAdminUsers: "/api/admin/accounts",
   updateAdminUserRole: "/api/admin/accounts/access",
   deleteAdminUser: "/api/admin/accounts",
+  loginUser: "/api/accounts/login",
+  registerUser: "/api/accounts/register",
 };
 
 export const getBearerHeader = (token) => {

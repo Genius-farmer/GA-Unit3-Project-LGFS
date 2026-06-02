@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import UserContext from "../context/UserContext.js";
-import { sharedFetch } from "../utils/fetchingUtils.js";
+import { sharedFetch, userEndpoints } from "../utils/fetchingUtils.js";
 import css from "../styles/App.module.css";
 import cssHome from "../styles/Homepage.module.css";
 import { getAsset, navLogoSrc } from "../utils/assetUtils.js";
@@ -32,7 +32,7 @@ const AuthPage = () => {
 
   const handleLogin = async () => {
     clearMessages();
-    const res = await fetchData("/api/accounts/login", "POST", {
+    const res = await fetchData(userEndpoints.loginUser, "POST", {
       body: { username, password },
     });
 
@@ -54,7 +54,7 @@ const AuthPage = () => {
 
   const handleRegister = async () => {
     clearMessages();
-    const res = await fetchData("/api/accounts/register", "PUT", {
+    const res = await fetchData(userEndpoints.registerUser, "PUT", {
       body: { username, password, displayName },
     });
 
